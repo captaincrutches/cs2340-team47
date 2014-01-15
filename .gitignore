@@ -28,5 +28,5 @@ proguard/
 *.iws
 .idea/
 
-# Miscosoft Office temp files
-~$*
+# Office temp files
+~*
