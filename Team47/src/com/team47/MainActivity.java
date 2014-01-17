@@ -1,4 +1,4 @@
-package com.cs2340.team47;
+package com.team47;
 
 import android.os.Bundle;
 import android.app.Activity;
