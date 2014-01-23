@@ -29,10 +29,15 @@ public class Person4 {
      * @param input the string to be modified
      * @return the modified string
      */
-    private String calc(String input) {
-      //Person 1 put your implementation here
-      return null;
-    }
+    public String calc(String input) {
+    	int t = 0;
+    	String output = new String();
+    	for(int i = 0; i < input.length(); i++){
+    		t = input.charAt(i) + 1;
+    		output = output + (char) t;
+    		}
+      return output;
+      }
     
     /**
      * Return a string rep of this object
