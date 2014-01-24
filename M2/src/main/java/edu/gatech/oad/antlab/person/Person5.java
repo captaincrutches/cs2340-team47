@@ -9,6 +9,7 @@ package edu.gatech.oad.antlab.person;
  *  @version 1.1
  */
 public class Person5 {
+	
   /** Holds the persons real name */
   private String name;
   	/**
@@ -31,7 +32,9 @@ public class Person5 {
 	 */
 	private String calc(String input) {
 	  //Person 5 put your implementation here
-	  return null;
+		String toRet;
+		toRet = input.substring(2) + input.substring(0,2);
+	  return toRet;
 	}
 	
 	/**
