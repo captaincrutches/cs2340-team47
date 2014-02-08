@@ -26,6 +26,10 @@
             android:name="com.example.moneymanager.LoginPage"
             android:label="@string/title_activity_login_page" >
         </activity>
+        <activity
+            android:name="com.example.moneymanager.MyAccounts"
+            android:label="@string/title_activity_my_accounts" >
+        </activity>
     </application>
 
 </manifest>

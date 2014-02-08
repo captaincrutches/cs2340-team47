@@ -13,5 +13,9 @@
     <string name="password_text">Password</string>
     <string name="line">________________________________________________</string>
     <string name="login_image">Default login image</string>
-
+    <string name="title_activity_my_accounts">MyAccounts</string>
+    <string name="login_failed_message">Invalid username/password. Please try again</string>
+	<string name="welcome_myaccounts_message">Welcome To Your Accounts Page</string>
+	
+    
 </resources>
