@@ -1,0 +1,28 @@
+Brainstormed Classes:
+	User
+	Account
+	Money Value
+	Balance
+	Transactions
+	Deposits
+	Withdrawals
+	Report
+	Errors
+	Database
+	General Messages
+	Contact Us
+	Login
+	Register
+	Savings
+	Checking
+	Prepaid
+	Budgets
+	Profile
+	Database Interfacer
+
+Filtered Classes:
+	User
+	Account
+	Transaction
+	Report
+	Database Interfacer

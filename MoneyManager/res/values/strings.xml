@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Money Manager</string>
+    <string name="action_settings">Settings</string>
+    <string name="button_login">Login</string>
+    <string name="button_register">Register</string>
+    <string name="login_register_message">Please login if you already have an account. Or register to create a new account.</string>
+    <string name="welcome_message">Welcome to Money Manager. This application will assist you in keeping track of your transactions in a simple and easy way.</string>
+    <string name="title_activity_login_page">Login</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="username_text">Username</string>
+    <string name="password_text">Password</string>
+    <string name="line">________________________________________________</string>
+    <string name="login_image">Default login image</string>
+    <string name="title_activity_my_accounts">MyAccounts</string>
+    <string name="login_failed_message">Invalid username/password. Please try again</string>
+	<string name="welcome_myaccounts_message">Welcome To Your Accounts Page</string>
+	
+    
+</resources>
