@@ -8,25 +8,60 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="#FFFFFF"
-    tools:context=".MainActivity" >
+    tools:context=".RegisterPage" >
+
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView
+	        android:id="@+id/register_instruction_message"
+	        android:layout_width="fill_parent"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="25dp"
+	        android:text="@string/register_instruction_message"
+	        android:textAppearance="?android:attr/textAppearanceMedium" />
+        
+    </LinearLayout>
     
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:gravity="center"
         android:orientation="horizontal" >
         
+        <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="25dp"
+	        android:layout_marginLeft="25dp"
+	        android:text="@string/line"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+        />
+    </LinearLayout>
+    
+    <LinearLayout android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
         
-	    <ImageView
-	        android:id="@+id/loginicon"
-	        android:layout_width="150dp"
-	        android:layout_height="150dp"
-	        android:src="@drawable/login_icon"
-	        android:contentDescription="@string/login_image" 
+        <TextView android:id="@+id/register_username_text"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:text="@string/username_text"
+	        android:layout_weight="1"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
 	        />
-	    
-	 </LinearLayout>
-	 
+        
+        <EditText android:id="@+id/register_username_entered"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="2"
+	        android:inputType="text"
+	        android:hint=""
+	        />
+        
+    </LinearLayout>
+    
+    
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -38,34 +73,65 @@
 	        android:layout_marginLeft="25dp"
         />
     </LinearLayout>
-
+    
+    
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
         
-        <EditText android:id="@+id/username"
+        <TextView android:id="@+id/register_password_text"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:hint="@string/username_text"
+	        android:text="@string/password_text"
 	        android:layout_weight="1"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
 	        />
+        
+        <EditText android:id="@+id/register_password_entered"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
+	        android:layout_weight="2"
+	        android:inputType="textPassword"
+	        android:hint=""
+	        />
+        
     </LinearLayout>
     
+     <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="25dp"
+	        android:layout_marginLeft="25dp"
+        />
+    </LinearLayout>
     
     <LinearLayout android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
         
-	    <EditText android:id="@+id/password"
+        <TextView android:id="@+id/register_password_confirm_text"
 	        android:layout_width="0dp"
 	        android:layout_height="wrap_content"
-	        android:hint="@string/password_text"
+	        android:text="@string/confirm_password_text"
+	        android:layout_weight="2"
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+	        />
+        
+        <EditText android:id="@+id/register_password_confirm_entered"
+	        android:layout_width="0dp"
+	        android:layout_height="wrap_content"
 	        android:layout_weight="1"
 	        android:inputType="textPassword"
+	        android:hint=""
 	        />
+        
     </LinearLayout>
     
-    <LinearLayout
+ <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
@@ -77,18 +143,19 @@
         />
     </LinearLayout>
     
+    
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
         
         <TextView
-	        android:id="@+id/login_failed"
+	        android:id="@+id/register_failed"
 	        android:layout_width="fill_parent"
 	        android:layout_height="wrap_content"
-	        android:text="@string/login_failed_message"
+	        android:text="@string/register_failed_message"
 	        android:textAppearance="?android:attr/textAppearanceSmall"
-	        android:textColor="#FFFFFF"
+	        android:textColor="#ffffff"
 	        />
         
     </LinearLayout>
@@ -104,7 +171,7 @@
 	        android:layout_marginLeft="25dp"
         />
     </LinearLayout>
-        
+    
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -114,12 +181,13 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/button_login"
-            android:onClick="authenticateLogin"
+            android:text="@string/button_register"
+            android:onClick="registerUser"
              />
 
     </LinearLayout>
+    
 
     
-    
+
 </LinearLayout>

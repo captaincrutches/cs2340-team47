@@ -14,8 +14,14 @@
     <string name="line">________________________________________________</string>
     <string name="login_image">Default login image</string>
     <string name="title_activity_my_accounts">MyAccounts</string>
-    <string name="login_failed_message">Invalid username/password. Please try again</string>
-	<string name="welcome_myaccounts_message">Welcome To Your Accounts Page</string>
-	
+    <string name="login_failed_message">Invalid username/password. Please try again.</string>
+    <string name="welcome_myaccounts_message">Welcome To Your Accounts Page</string>
+    <string name="title_activity_register_page">RegisterPage</string>
+    <string name="register_failed_message">Registeration failed. Please try again later.</string>
+    <string name="title_activity_admin_page">AdminPage</string>
+    <string name="admin_welcome_message">Welcome Admin</string>
+    <string name="confirm_password_text">Confirm Password</string>
+    <string name="register_instruction_message">Please enter a desired username and password to register. You will be redirected to the login page after your account has been successfuly created.</string>
     
+
 </resources>

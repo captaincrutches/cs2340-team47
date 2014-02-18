@@ -2,12 +2,14 @@ package com.example.moneymanager;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
 
 public class LoginPage extends Activity {
 
@@ -26,25 +28,36 @@ public class LoginPage extends Activity {
 	
 	public void authenticateLogin(View view)
 	{
-		EditText username = (EditText) findViewById(R.id.username);
-		EditText password = (EditText) findViewById(R.id.password);
-		boolean valid = doLoginCredentialsMatch(username, password);
-		if (valid)
+		EditText usernameEntered = (EditText) findViewById(R.id.username);
+		EditText passwordEntered = (EditText) findViewById(R.id.password);
+		String username = usernameEntered.getText().toString();
+		String password = passwordEntered.getText().toString();
+		boolean isAdmin = isAdminUser(username, password);
+		if (!isAdmin)
 		{
-			Intent intent = new Intent(this, MyAccounts.class);
-			startActivity(intent);
+			boolean valid = authenticateUserCredentials(username, password);
+			if (valid)
+			{
+				Intent intent = new Intent(this, MyAccounts.class);
+				startActivity(intent);
+			}
+			else
+			{
+				TextView errorMessage = (TextView) findViewById(R.id.login_failed);
+				errorMessage.setTextColor(Color.RED);
+			}
 		}
 		else
 		{
-			TextView errorMessage = (TextView) findViewById(R.id.login_failed);
-			errorMessage.setTextColor(Color.RED);
+			Intent intent = new Intent(this, AdminPage.class);
+			startActivity(intent);
 		}
 	}
 	
-	private boolean doLoginCredentialsMatch(EditText username, EditText password)
+	private boolean isAdminUser(String username, String password)
 	{
 		// This will be replaced with getting information from the database and actually checking it
-		if (username.getText().toString().equals("admin") && password.getText().toString().equals("password"))
+		if (username.equals("admin") && password.equals("pass123"))
 		{
 			return true;
 		}
@@ -52,6 +65,23 @@ public class LoginPage extends Activity {
 		{
 			return false;
 		}
+	}
+	
+	private boolean authenticateUserCredentials(String username, String password)
+	{
+		boolean valid = false;
+		
+		DatabaseInterfacer database = new DatabaseInterfacer(getApplicationContext());
+		Cursor databaseReturn = database.getUserFromUserTable(username, password);
+		databaseReturn.moveToFirst();
+		int itemId = databaseReturn.getCount();
+		if (itemId != 0)
+		{
+			valid = true;
+		}
+		
+		
+		return valid;
 	}
 
 }
