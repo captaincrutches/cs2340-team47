@@ -22,6 +22,12 @@
     <string name="admin_welcome_message">Welcome Admin</string>
     <string name="confirm_password_text">Confirm Password</string>
     <string name="register_instruction_message">Please enter a desired username and password to register. You will be redirected to the login page after your account has been successfuly created.</string>
-    
+    <string name="add_account_text">Add Account</string>
+    <string name="title_activity_create_account">CreateAccount</string>
+    <string name="account_instruction_message">Please enter the below information about the account you wish to create. The name that you enter for the account is the display name for the account.</string>
+    <string name="account_name_text">Name</string>
+    <string name="balance_text">Balance</string>
+    <string name="button_create_account">Create Account</string>
+    <string name="account_create_failed_message">Account creation failed. Please try again later.</string>
 
 </resources>

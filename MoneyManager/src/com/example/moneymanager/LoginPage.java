@@ -39,6 +39,7 @@ public class LoginPage extends Activity {
 			if (valid)
 			{
 				Intent intent = new Intent(this, MyAccounts.class);
+				intent.putExtra("username", username);
 				startActivity(intent);
 			}
 			else

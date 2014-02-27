@@ -37,4 +37,45 @@
         />
     </LinearLayout>
 
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add_account_text"
+            android:onClick="goToCreateAccountsPage"
+             />
+
+    </LinearLayout>
+    
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <TextView
+	        android:layout_width="fill_parent"
+	        android:layout_height="25dp"
+	        android:text=""
+	        android:textAppearance="?android:attr/textAppearanceMedium"
+        />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+        
+        <ListView
+	        android:id="@+id/accounts_list"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" >
+    	</ListView>
+    	
+    </LinearLayout>
+    
+
 </LinearLayout>

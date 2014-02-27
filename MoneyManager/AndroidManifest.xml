@@ -38,6 +38,10 @@
             android:name="com.example.moneymanager.AdminPage"
             android:label="@string/title_activity_admin_page" >
         </activity>
+        <activity
+            android:name="com.example.moneymanager.CreateAccount"
+            android:label="@string/title_activity_create_account" >
+        </activity>
     </application>
 
 </manifest>

@@ -32,7 +32,7 @@ public class RegisterPage extends Activity {
 		String password = passwordEntered.getText().toString();
 		EditText confirmPasswordEntered = (EditText) findViewById(R.id.register_password_confirm_entered);
 		String confirmPassword = confirmPasswordEntered.getText().toString();
-		if (password.equals(confirmPassword))
+		if (password.equals(confirmPassword) && !username.equals("") && !password.equals("") && !confirmPassword.equals(""))
 		{
 			Boolean success = insertIntoDatabase(username, password);
 			
@@ -47,12 +47,13 @@ public class RegisterPage extends Activity {
 		}
 		else
 		{
-			TextView errorMessage = (TextView) findViewById(R.id.register_failed);
-			errorMessage.setTextColor(Color.RED);
+			showUnableToRegisterErrorMessage();
 		}
 		
 		
 	}
+	
+	
 	
 	public boolean insertIntoDatabase(String username, String password)
 	{

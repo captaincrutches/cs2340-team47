@@ -14,9 +14,13 @@ public class DatabaseInterfacer extends SQLiteOpenHelper
     	public static final String TABLE_NAME = "users";
         public static final String COLUMN_NAME_USERNAME = "username";
         public static final String COLUMN_NAME_PASSWORD = "password";
+        public static final String ACCOUNT_TABLE_NAME = "accounts";
+        public static final String COLUMN_NAME_ACCOUNT_NAME = "accountname";
+        public static final String COLUMN_NAME_ACCOUNT_BALANCE = "balance";
+        
     }
     
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
     public static final String DATABASE_NAME = "MoneyManager.db";
     
     private static final String TEXT_TYPE = " TEXT";
@@ -27,9 +31,20 @@ public class DatabaseInterfacer extends SQLiteOpenHelper
         FeedEntry.COLUMN_NAME_USERNAME + TEXT_TYPE + COMMA_SEP +
         FeedEntry.COLUMN_NAME_PASSWORD + TEXT_TYPE +
         " );";
+    
+    private static final String SQL_CREATE_ACCOUNT =
+            "CREATE TABLE " + FeedEntry.ACCOUNT_TABLE_NAME + " (" +
+            FeedEntry._ID + " INTEGER PRIMARY KEY," +
+            FeedEntry.COLUMN_NAME_USERNAME + TEXT_TYPE + COMMA_SEP +
+            FeedEntry.COLUMN_NAME_ACCOUNT_NAME + TEXT_TYPE + COMMA_SEP +
+            FeedEntry.COLUMN_NAME_ACCOUNT_BALANCE + TEXT_TYPE + 
+            " );";
 
     private static final String SQL_DELETE_ENTRIES =
         "DROP TABLE IF EXISTS " + FeedEntry.TABLE_NAME;
+    
+    private static final String SQL_DELETE_ACCOUNT =
+            "DROP TABLE IF EXISTS " + FeedEntry.ACCOUNT_TABLE_NAME;
 	//END OF VARIABLE CREATION. START CLASS METHODS
     
 	public DatabaseInterfacer(Context context)
@@ -40,10 +55,12 @@ public class DatabaseInterfacer extends SQLiteOpenHelper
 	public void onCreate(SQLiteDatabase db) 
 	{
         db.execSQL(SQL_CREATE_ENTRIES);
+        db.execSQL(SQL_CREATE_ACCOUNT);
     }
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) 
     {
         db.execSQL(SQL_DELETE_ENTRIES);
+        db.execSQL(SQL_DELETE_ACCOUNT);
         onCreate(db);
     }
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) 
@@ -75,6 +92,34 @@ public class DatabaseInterfacer extends SQLiteOpenHelper
 
     	
     	Cursor test = db.rawQuery("SELECT * FROM users WHERE username = ? AND password = ?", new String[] {username, password});
+    	return test;
+    	
+    }
+    
+    public long insertIntoAccountsTable(String accountName, String balance, String username)
+    {
+    	SQLiteDatabase db = this.getWritableDatabase();
+    	
+	    ContentValues values = new ContentValues();
+	    values.put(FeedEntry.COLUMN_NAME_USERNAME, username);
+	    values.put(FeedEntry.COLUMN_NAME_ACCOUNT_NAME, accountName);
+	    values.put(FeedEntry.COLUMN_NAME_ACCOUNT_BALANCE, balance);
+	
+	    long newRowId;
+	    newRowId = db.insert(
+	             FeedEntry.ACCOUNT_TABLE_NAME,
+	             null,
+	             values);
+	    
+	    return newRowId;
+    }
+    
+    public Cursor getAccountFromAccountTable (String username)
+    {
+    	SQLiteDatabase db = this.getReadableDatabase();
+
+    	
+    	Cursor test = db.rawQuery("SELECT * FROM accounts WHERE username = ?" , new String[] {username});
     	return test;
     	
     }
