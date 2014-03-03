@@ -6,10 +6,15 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 public class MyAccounts extends Activity {
+	
+	private String username;
+	private String accountSelected;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -17,18 +22,32 @@ public class MyAccounts extends Activity {
 		setContentView(R.layout.activity_my_accounts);
 		
 		Bundle bundle = getIntent().getExtras();
-		String username = bundle.getString("username");
+		username = bundle.getString("username");
 		
 		Cursor databaseReturn = getAccountsFromDatabase(username);
 		String[] accountList = convertCursorToArray(databaseReturn);
-		
-		//String[] accountList = {"one", "two"};
+	
 		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
 		        android.R.layout.simple_list_item_1, accountList);
 		
-		ListView listView = (ListView) findViewById(R.id.accounts_list);
+		final ListView listView = (ListView) findViewById(R.id.accounts_list);
 		listView.setAdapter(adapter);
+		
+		listView.setOnItemClickListener(new OnItemClickListener() {
+		      public void onItemClick(AdapterView<?> myAdapter, View myView, int myItemInt, long mylng) {
+		        accountSelected =(String) (listView.getItemAtPosition(myItemInt));
+		        transitionToAccountPage();
+		      }                 
+		});
+	}
+	
+	public void transitionToAccountPage()
+	{
+		Intent intent = new Intent(this, Account.class);
+		intent.putExtra("username", username);
+		intent.putExtra("accountname", accountSelected);
+		startActivity(intent);
 	}
 
 	@Override

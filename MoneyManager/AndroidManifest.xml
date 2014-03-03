@@ -42,6 +42,18 @@
             android:name="com.example.moneymanager.CreateAccount"
             android:label="@string/title_activity_create_account" >
         </activity>
+        <activity
+            android:name="com.example.moneymanager.Account"
+            android:label="@string/title_activity_account" >
+        </activity>
+        <activity
+            android:name="com.example.moneymanager.DepositPage"
+            android:label="@string/title_activity_deposit_page" >
+        </activity>
+        <activity
+            android:name="com.example.moneymanager.WithdrawalPage"
+            android:label="@string/title_activity_withdrawal_page" >
+        </activity>
     </application>
 
 </manifest>

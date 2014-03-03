@@ -29,5 +29,18 @@
     <string name="balance_text">Balance</string>
     <string name="button_create_account">Create Account</string>
     <string name="account_create_failed_message">Account creation failed. Please try again later.</string>
+    <string name="title_activity_account">Account</string>
+    <string name="account_text">Account:</string>
+    <string name="account_name">dfasd</string>
+    <string name="account_balance_text">Balance:</string>
+    <string name="balance">adsfsa</string>
+    <string name="button_deposit">Make Deposit</string>
+    <string name="button_withdrawal">Make Withdrawal</string>
+    <string name="title_activity_deposit_page">DepositPage</string>
+    <string name="title_activity_withdrawal_page">WithdrawalPage</string>
+    <string name="transaction_failed_message">Transaction Failed</string>
+    <string name="button_make_transaction">Make Transaction</string>
+    <string name="amount_text">Amount:</string>
+    <string name="button_back_to_myaccounts">Back To My Accounts</string>
 
 </resources>
