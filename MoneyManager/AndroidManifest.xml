@@ -54,6 +54,14 @@
             android:name="com.example.moneymanager.WithdrawalPage"
             android:label="@string/title_activity_withdrawal_page" >
         </activity>
+        <activity
+            android:name="com.example.moneymanager.Reports"
+            android:label="@string/title_activity_reports" >
+        </activity>
+        <activity
+            android:name="com.example.moneymanager.SpendingCategoryReport"
+            android:label="@string/title_activity_spending_category_report" >
+        </activity>
     </application>
 
 </manifest>

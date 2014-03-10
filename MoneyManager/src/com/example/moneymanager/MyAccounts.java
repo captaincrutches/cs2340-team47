@@ -15,6 +15,7 @@ public class MyAccounts extends Activity {
 	
 	private String username;
 	private String accountSelected;
+	private String[] accountList;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +26,7 @@ public class MyAccounts extends Activity {
 		username = bundle.getString("username");
 		
 		Cursor databaseReturn = getAccountsFromDatabase(username);
-		String[] accountList = convertCursorToArray(databaseReturn);
+		accountList = convertCursorToArray(databaseReturn);
 	
 		
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, 
@@ -62,6 +63,16 @@ public class MyAccounts extends Activity {
 		Bundle bundle = getIntent().getExtras();
 		String username = bundle.getString("username");
 		Intent intent = new Intent(this, CreateAccount.class);
+		
+		intent.putExtra("username", username);
+		startActivity(intent);
+	}
+	
+	public void goToReportsPage(View view)
+	{
+		Bundle bundle = getIntent().getExtras();
+		String username = bundle.getString("username");
+		Intent intent = new Intent(this, Reports.class);
 		
 		intent.putExtra("username", username);
 		startActivity(intent);

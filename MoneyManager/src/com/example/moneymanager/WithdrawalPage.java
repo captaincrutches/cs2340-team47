@@ -6,14 +6,21 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemSelectedListener;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 public class WithdrawalPage extends Activity {
+	
+	
 
 	private String username;
 	private String accountName;
 	private double currentBalance;
-	
+	private String category;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -23,6 +30,24 @@ public class WithdrawalPage extends Activity {
 		username = bundle.getString("username");
 		accountName = bundle.getString("accountname");
 		currentBalance = Double.parseDouble(bundle.getString("currentbalance"));
+		
+		Spinner spinner = (Spinner) findViewById(R.id.category_spinner);
+		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.category_array, android.R.layout.simple_spinner_item);
+		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+		spinner.setAdapter(adapter);
+		spinner.setOnItemSelectedListener(new OnItemSelectedListener(){
+			public void onItemSelected(AdapterView<?> parent, View view, 
+		            int pos, long id) {
+		        // An item was selected. You can retrieve the selected item using
+		        category = parent.getItemAtPosition(pos).toString();
+		        
+		    }
+
+		    public void onNothingSelected(AdapterView<?> parent) {
+		        // Another interface callback
+		    }               
+			}
+		);
 	}
 
 	@Override
@@ -40,15 +65,22 @@ public class WithdrawalPage extends Activity {
 		
 		if (!amountEntered.equals(""))
 		{
-			double transactionAmount = Double.parseDouble(amountEntered);
-			if (transactionAmount <= currentBalance)
+			if (amountEntered.indexOf(".") == -1 || amountEntered.substring(amountEntered.indexOf(".") + 1).length() <= 2)
 			{
-				boolean successUpdate = updateBalanceInDatabase(currentBalance - transactionAmount);
-				boolean successAddToHistory = addTransactionToAccountHistory(transactionAmount);
-				
-				if (successAddToHistory && successUpdate)
+				double transactionAmount = Double.parseDouble(amountEntered);
+				if (transactionAmount <= currentBalance)
 				{
-					transitionToAccountPage();
+					boolean successUpdate = updateBalanceInDatabase(currentBalance - transactionAmount);
+					boolean successAddToHistory = addTransactionToAccountHistory(transactionAmount);
+					
+					if (successAddToHistory && successUpdate)
+					{
+						transitionToAccountPage();
+					}
+					else
+					{
+						showUnableToMakeTransactionErrorMessage();
+					}
 				}
 				else
 				{
@@ -84,7 +116,7 @@ public class WithdrawalPage extends Activity {
 	public boolean addTransactionToAccountHistory(double transactionAmount)
 	{
 		DatabaseInterfacer database = new DatabaseInterfacer(getBaseContext());
-		long databaseReturn = database.addTransactionToAccountHistory("Withdrawal", username, accountName, String.valueOf(transactionAmount));
+		long databaseReturn = database.addTransactionToAccountHistory("Withdrawal", username, accountName, String.valueOf(transactionAmount), category);
 		
 		if (databaseReturn == -1)
 		{

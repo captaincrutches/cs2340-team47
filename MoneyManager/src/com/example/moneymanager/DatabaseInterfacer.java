@@ -22,13 +22,15 @@ public class DatabaseInterfacer extends SQLiteOpenHelper
         public static final String COLUMN_NAME_ACCOUNT_NAME = "accountname";
         public static final String COLUMN_NAME_ACCOUNT_BALANCE = "balance";
         public static final String COLUMN_NAME_TRANSACTION_AMOUNT = "transactionamount";
-        public static final String COLUMN_NAME_DATE_TIME = "datetime";
+        public static final String COLUMN_NAME_DATE_TIME = "timeoftransaction";
         public static final String TRANSACTION_TABLE_NAME = "transactions";
         public static final String COLUMN_NAME_TRANSACTION_TYPE = "transactiontype";
+        public static final String COLUMN_NAME_TRANSACTION_CATEGORY = "transactioncategory";
+
         
     }
     
-    public static final int DATABASE_VERSION = 8;
+    public static final int DATABASE_VERSION = 11;
     public static final String DATABASE_NAME = "MoneyManager.db";
     
     private static final String TEXT_TYPE = " TEXT";
@@ -56,6 +58,7 @@ public class DatabaseInterfacer extends SQLiteOpenHelper
             FeedEntry.COLUMN_NAME_ACCOUNT_NAME + TEXT_TYPE + COMMA_SEP +
             FeedEntry.COLUMN_NAME_TRANSACTION_TYPE + TEXT_TYPE + COMMA_SEP +
             FeedEntry.COLUMN_NAME_TRANSACTION_AMOUNT + TEXT_TYPE + COMMA_SEP +
+            FeedEntry.COLUMN_NAME_TRANSACTION_CATEGORY + TEXT_TYPE + COMMA_SEP +
             FeedEntry.COLUMN_NAME_DATE_TIME + DATETIME_TYPE + " DEFAULT CURRENT_TIMESTAMP" + 
             " );";
 
@@ -164,7 +167,7 @@ public class DatabaseInterfacer extends SQLiteOpenHelper
     	return true;
     }
     
-    public long addTransactionToAccountHistory(String transactionType, String username, String accountName, String transactionAmount)
+    public long addTransactionToAccountHistory(String transactionType, String username, String accountName, String transactionAmount, String transactionCategory)
     {
     	/*
     	DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
@@ -178,6 +181,7 @@ public class DatabaseInterfacer extends SQLiteOpenHelper
 	    values.put(FeedEntry.COLUMN_NAME_ACCOUNT_NAME, accountName);
 	    values.put(FeedEntry.COLUMN_NAME_TRANSACTION_AMOUNT, transactionAmount);
 	    values.put(FeedEntry.COLUMN_NAME_TRANSACTION_TYPE, transactionType);
+	    values.put(FeedEntry.COLUMN_NAME_TRANSACTION_CATEGORY, transactionCategory);
 	    values.put(FeedEntry.COLUMN_NAME_DATE_TIME, getDateTime());
 	
 	    long newRowId;
@@ -187,6 +191,14 @@ public class DatabaseInterfacer extends SQLiteOpenHelper
 	             values);
 	    
 	    return newRowId;
+    }
+    
+    public Cursor getCategoryReportInformation(String username, String fromDate, String toDate)
+    {
+    	SQLiteDatabase db = this.getReadableDatabase();
+    	
+    	Cursor test = db.rawQuery("SELECT * FROM transactions where username = ? AND transactiontype = ? AND timeoftransaction between datetime(?) AND datetime(?)" , new String[] {username, "Withdrawal", fromDate, toDate});
+    	return test;
     }
     
     private String getDateTime() 

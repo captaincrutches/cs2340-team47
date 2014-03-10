@@ -42,5 +42,29 @@
     <string name="button_make_transaction">Make Transaction</string>
     <string name="amount_text">Amount:</string>
     <string name="button_back_to_myaccounts">Back To My Accounts</string>
+    <string name="category_text">Category:</string>
+
+    <string-array name="category_array">
+        <item>Food</item>
+        <item>Rent</item>
+        <item>Entertainment</item>
+        <item>Clothing</item>
+    </string-array>
+    <string-array name="reports_array">
+        <item>Spending Category</item>
+    </string-array>
+
+    <string name="report_button_text">Reports</string>
+    <string name="title_activity_reports">Reports</string>
+    <string name="create_report_text">Report Type:</string>
+    <string name="button_generate_report">Generate Report</string>
+    <string name="report_from_date"></string>
+    <string name="pick_report_from_date">From Date</string>
+    <string name="report_to_date"></string>
+    <string name="pick_report_to_date">To Date</string>
+    <string name="title_activity_spending_category_report">SpendingCategoryReport</string>
+    <string name="spending_category_report_heading">Spending Category Report</string>
+    <string name="generate_report_failed">Generate Report Failed</string>
+    
 
 </resources>

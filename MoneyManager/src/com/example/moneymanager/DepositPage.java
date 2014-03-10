@@ -40,19 +40,26 @@ public class DepositPage extends Activity {
 		
 		if (!amountEntered.equals(""))
 		{
-			double transactionAmount = Double.parseDouble(amountEntered);
-			boolean successUpdate = updateBalanceInDatabase(transactionAmount + currentBalance);
-			boolean successAddToHistory = addTransactionToAccountHistory(transactionAmount);
-			
-			if (successAddToHistory && successUpdate)
+			if (amountEntered.indexOf(".") == -1 || amountEntered.substring(amountEntered.indexOf(".") + 1).length() <= 2)
 			{
-				transitionToAccountPage();
+				double transactionAmount = Double.parseDouble(amountEntered);
+				boolean successUpdate = updateBalanceInDatabase(transactionAmount + currentBalance);
+				boolean successAddToHistory = addTransactionToAccountHistory(transactionAmount);
+				
+				if (successAddToHistory && successUpdate)
+				{
+					transitionToAccountPage();
+				}
+				else
+				{
+					showUnableToMakeTransactionErrorMessage();
+				}
+	
 			}
 			else
 			{
 				showUnableToMakeTransactionErrorMessage();
 			}
-
 		}
 		else
 		{
@@ -77,7 +84,7 @@ public class DepositPage extends Activity {
 	public boolean addTransactionToAccountHistory(double transactionAmount)
 	{
 		DatabaseInterfacer database = new DatabaseInterfacer(getBaseContext());
-		long databaseReturn = database.addTransactionToAccountHistory("Deposit", username, accountName, String.valueOf(transactionAmount));
+		long databaseReturn = database.addTransactionToAccountHistory("Deposit", username, accountName, String.valueOf(transactionAmount), "Deposit");
 		
 		if (databaseReturn == -1)
 		{
