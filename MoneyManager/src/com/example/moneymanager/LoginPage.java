@@ -36,7 +36,7 @@ public class LoginPage extends Activity {
         EditText passwordEntered = (EditText) findViewById(R.id.password);
         String username = usernameEntered.getText().toString();
         String password = passwordEntered.getText().toString();
-        boolean isAdmin = isAdminUser(username, password);
+        boolean isAdmin = Admin.isAdminUser(username, password);
         if (!isAdmin) {
             boolean valid = authenticateUserCredentials(username, password);
             if (valid) {
@@ -52,19 +52,6 @@ public class LoginPage extends Activity {
             Intent intent = new Intent(this, AdminPage.class);
             startActivity(intent);
         }
-    }
-    /**
-     * Method to check if it is the admin user.
-     * @param username username of the user
-     * @param password password of the user
-     * @return true if it is an admin user
-     */
-    private boolean isAdminUser(final String username,
-            final String password) {
-        if (username.equals("admin") && password.equals("pass123")) {
-            return true;
-        }
-        return false;
     }
     /**
      * Method to authenticate the username and password.
