@@ -41,6 +41,13 @@ public class DepositPage extends Activity {
                 (TextView)
                 findViewById(R.id.account_transaction_entered);
         String amountEntered = transactionAmountEntered.getText().toString();
+	boolean success = attemptTransaction(amountEntered);
+	if (!success){
+            showUnableToMakeTransactionErrorMessage();
+        }
+    }
+
+    protected final boolean attemptTransaction(String amountEntered){
         if (!amountEntered.equals("")) {
             if (amountEntered.indexOf(".") == -1
                     ||
@@ -53,16 +60,16 @@ public class DepositPage extends Activity {
                         addTransactionToAccountHistory(transactionAmount);
                 if (successAddToHistory && successUpdate) {
                     transitionToAccountPage();
+                    return true;
                 } else {
-                    showUnableToMakeTransactionErrorMessage();
+                    return false;
                 }
             } else {
-                showUnableToMakeTransactionErrorMessage();
+                return false;
             }
         } else {
-            showUnableToMakeTransactionErrorMessage();
+            return false;
         }
-
     }
     /**
      * Method to show the error message when making a transaction fails.
@@ -77,7 +84,7 @@ public class DepositPage extends Activity {
      * @param newAccountBalance the new account balance
      * @return true if the update was successful
      */
-    public final boolean updateBalanceInDatabase(
+    public boolean updateBalanceInDatabase(
             final double newAccountBalance) {
         DatabaseInterfacer database = new DatabaseInterfacer(getBaseContext());
         return database.updateBalance(username, accountName,
@@ -88,7 +95,7 @@ public class DepositPage extends Activity {
      * @param transactionAmount the transaction amount
      * @return true if the transaction was added successfully to the database
      */
-    public final boolean addTransactionToAccountHistory(
+    public boolean addTransactionToAccountHistory(
             final double transactionAmount) {
         DatabaseInterfacer database = new DatabaseInterfacer(getBaseContext());
         long databaseReturn = database.addTransactionToAccountHistory("Deposit",
