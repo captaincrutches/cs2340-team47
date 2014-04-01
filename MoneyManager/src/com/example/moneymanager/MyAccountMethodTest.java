@@ -1,4 +1,4 @@
-package com.example.moneymanager.test;
+package com.example.moneymanager;
 
 import java.util.Random;
 
