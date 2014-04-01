@@ -8,6 +8,11 @@ import com.example.moneymanager.MyAccounts;
 import android.database.Cursor;
 import android.test.ActivityUnitTestCase;
 
+/**
+ * Class to test the method convertCursorToArray in MyAccounts.java
+ * 
+ * @author Matt Schmidt
+ */
 public class MyAccountMethodTest extends ActivityUnitTestCase<MyAccounts> {
 	/** Holds the number of users to test with */
 	private int numUsers;
